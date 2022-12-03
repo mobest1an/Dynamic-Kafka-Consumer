@@ -11,7 +11,7 @@ import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomKafkaListenerRegistrar implements InitializingBean {
+public class CustomKafkaListenerRegistrar {
 
     @Autowired
     private CustomKafkaListenerProperties customKafkaListenerProperties;
@@ -25,11 +25,11 @@ public class CustomKafkaListenerRegistrar implements InitializingBean {
     @Autowired
     private KafkaListenerContainerFactory kafkaListenerContainerFactory;
 
-    @Override
-    public void afterPropertiesSet() {
-        customKafkaListenerProperties.getListeners()
-                .forEach(this::registerCustomKafkaListener);
-    }
+//    @Override
+//    public void afterPropertiesSet() {
+//        customKafkaListenerProperties.getListeners()
+//                .forEach(this::registerCustomKafkaListener);
+//    }
 
     public void registerCustomKafkaListener(String name, CustomKafkaListenerProperty customKafkaListenerProperty) {
         this.registerCustomKafkaListener(name, customKafkaListenerProperty, false);
